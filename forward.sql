@@ -1,19 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.11
--- http://www.phpmyadmin.net
+-- version 4.8.3
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 21-Set-2018 às 02:27
--- Versão do servidor: 5.6.21
--- PHP Version: 5.6.3
+-- Generation Time: Sep 23, 2018 at 10:57 PM
+-- Server version: 10.1.35-MariaDB
+-- PHP Version: 7.2.9
 
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `forward`
@@ -24,19 +26,32 @@ USE forward;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `fotos`
+-- Table structure for table `comentarios`
+--
+
+DROP TABLE IF EXISTS `comentarios`;
+CREATE TABLE "comentarios" ;
+
+--
+-- Dumping data for table `comentarios`
+--
+
+INSERT INTO `comentarios` (`id`, `id_post`, `id_user`, `comentario`, `data`) VALUES
+(1, 91, 2, 'Seu vacilao', '2018-09-23 20:21:42'),
+(3, 91, 1, 'hue', '2018-09-23 20:36:31'),
+(5, 91, 1, 'fodase', '2018-09-23 20:45:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fotos`
 --
 
 DROP TABLE IF EXISTS `fotos`;
-CREATE TABLE IF NOT EXISTS "fotos" (
-"id" int(11) NOT NULL,
-  "id_user" int(11) NOT NULL,
-  "nome" varchar(255) NOT NULL,
-  "legenda" varchar(255) NOT NULL
-);
+CREATE TABLE "fotos" ;
 
 --
--- Extraindo dados da tabela `fotos`
+-- Dumping data for table `fotos`
 --
 
 INSERT INTO `fotos` (`id`, `id_user`, `nome`, `legenda`) VALUES
@@ -52,33 +67,23 @@ INSERT INTO `fotos` (`id`, `id_user`, `nome`, `legenda`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `posts`
+-- Table structure for table `posts`
 --
 
 DROP TABLE IF EXISTS `posts`;
-CREATE TABLE IF NOT EXISTS "posts" (
-"id" int(11) NOT NULL,
-  "id_user" int(11) NOT NULL,
-  "post" varchar(140) NOT NULL,
-  "nome_user" varchar(255) NOT NULL,
-  "login_user" varchar(255) NOT NULL,
-  "data" timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  "profile_user" tinyint(1) NOT NULL
-);
+CREATE TABLE "posts" ;
 
 --
--- Extraindo dados da tabela `posts`
+-- Dumping data for table `posts`
 --
 
 INSERT INTO `posts` (`id`, `id_user`, `post`, `nome_user`, `login_user`, `data`, `profile_user`) VALUES
 (34, 5, 'bora fuma crak\r\n', 'Yaguin meno da favela', 'yago83', '2018-09-01 15:07:39', 1),
-(36, 1, 'se fude\r\n', 'Trump', 'trump', '2018-09-13 22:03:08', 1),
 (37, 9, 'Tenho críticas relativas a esta rede social. Não é funcional e há muitos bugs, não recomendo. 5 estrelas', 'Renanzin rx vrau', 'Unkybr', '2018-08-30 22:17:56', 1),
 (38, 10, 'Tenho uma certa crítica. Não tenho visto nenhum outro anão nesta rede. Isso é PRECONCEITO, VAI TODO MUNDO TOMAR NO CU SEUS FODIDOS', 'Edu', 'Edu', '2018-08-30 22:30:54', 1),
 (41, 10, 'TA APAGANDO MEU COMENTÁRIO PQ??? DEIXA EU EXPOR A VERDADE. SE NÃO GOSTOU MAMA A MINHA PICA QUEIMADA', 'Edu', 'Edu', '2018-08-30 22:26:10', 1),
 (50, 5, 'é nois neguin', 'Yaguin meno da favela', 'yago83', '2018-09-01 15:07:39', 1),
-(51, 2, 'comam drogas', 'Ronald', 'ronald', '2018-09-01 13:56:13', 1),
-(55, 1, 'bosta', 'Trump', 'trump', '2018-09-13 22:03:08', 1),
+(51, 2, 'Boa tarde', 'Ronald', 'ronald', '2018-09-22 17:31:01', 1),
 (59, 5, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'Yaguin meno da favela', 'yago83', '2018-09-03 22:21:30', 1),
 (68, 6, 'fdfsa', 'Germano', 'germano', '2018-09-04 23:39:59', 0),
 (70, 5, 'aa', 'Yaguin meno da favela', 'yago83', '2018-09-13 22:18:56', 1),
@@ -88,105 +93,63 @@ INSERT INTO `posts` (`id`, `id_user`, `post`, `nome_user`, `login_user`, `data`,
 (74, 12, 'cu\r\n', 'leandro', 'leandro', '2018-09-13 22:27:58', 1),
 (75, 11, 'Puruca na área', 'Puruca', 'purucas', '2018-09-13 22:29:38', 1),
 (76, 11, 'Calem a boca', 'Puruca', 'purucas', '2018-09-13 23:52:31', 1),
-(77, 2, 'cu', 'Ronald', 'ronald', '2018-09-18 21:35:38', 1);
+(85, 1, 'dasfadhfasud', 'Trump', 'trump', '2018-09-22 18:14:35', 1),
+(89, 13, 'cu', 'Camila', 'santanacah', '2018-09-22 21:12:02', 1),
+(91, 1, 'Teste comentarios', 'Trump', 'trump', '2018-09-23 19:54:06', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `relacao`
+-- Table structure for table `relacao`
 --
 
 DROP TABLE IF EXISTS `relacao`;
-CREATE TABLE IF NOT EXISTS "relacao" (
-"id" int(11) NOT NULL,
-  "id_segue" int(11) NOT NULL,
-  "id_seguido" int(11) NOT NULL,
-  "aut" varchar(255) NOT NULL
-);
+CREATE TABLE "relacao" ;
+
+--
+-- Dumping data for table `relacao`
+--
+
+INSERT INTO `relacao` (`id`, `id_segue`, `id_seguido`, `aut`) VALUES
+(14, 1, 2, '1'),
+(22, 13, 5, '1'),
+(24, 1, 9, '1'),
+(27, 13, 1, '1'),
+(30, 13, 11, '1'),
+(31, 13, 6, '1'),
+(32, 13, 9, '1'),
+(35, 1, 5, '1'),
+(38, 11, 2, '1'),
+(39, 11, 1, '1'),
+(40, 11, 10, '1'),
+(41, 11, 13, '1');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Table structure for table `usuarios`
 --
 
 DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE IF NOT EXISTS "usuarios" (
-"id" int(11) NOT NULL,
-  "login" varchar(255) NOT NULL,
-  "senha" varchar(255) NOT NULL,
-  "email" varchar(255) NOT NULL,
-  "nome" varchar(255) NOT NULL,
-  "profile" tinyint(1) NOT NULL
-);
+CREATE TABLE "usuarios" ;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `login`, `senha`, `email`, `nome`, `profile`) VALUES
-(1, 'trump', '123', 'trump@gmail.com', 'Trump', 1),
-(2, 'ronald', '123', 'ronald@123', 'Ronald', 1),
-(5, 'yago83', '111', 'yago_rj@hotmail.com', 'Yaguin meno da favela', 1),
-(6, 'germano', '123', 'germano@gmail.com', 'Germano', 0),
-(7, 'bruno', '123', 'bruno007@gmail.com', 'Bruno', 1),
-(9, 'Unkybr', '123', 'xrenan@gmail.com', 'Renanzin rx vrau', 1),
-(10, 'Edu', 'edu', 'edu@gmail.com', 'Edu', 1),
-(11, 'purucas', '123', 'puruca@email.com', 'Puruca', 1),
-(12, 'leandro', '', 'leandro@gmail.com', 'leandro', 1);
+INSERT INTO `usuarios` (`id`, `login`, `senha`, `email`, `nome`, `bio`, `profile`) VALUES
+(1, 'trump', '123', 'trump@gmail.com', 'Trump', '45th President of the United States of My Ass', 1),
+(2, 'ronald', '123', 'ronald@123', 'Ronald', 'McDonalds caralhooooooooo', 1),
+(5, 'yago83', '111', 'yago_rj@hotmail.com', 'Yaguin meno da favela', 'que isso', 1),
+(6, 'germano', '123', 'germano@gmail.com', 'Germano', '', 0),
+(7, 'bruno', '123', 'bruno007@gmail.com', 'Bruno', '', 1),
+(9, 'Unkybr', '123', 'xrenan@gmail.com', 'Renanzin rx vrau', '', 1),
+(10, 'Edu', 'edu', 'edu@gmail.com', 'Edu', 'hueheuhe', 1),
+(11, 'purucas', '123', 'puruca@email.com', 'Puruca', 'ta nervoso', 1),
+(12, 'leandro', '123', 'leandro@gmail.com', 'leandro', '', 1),
+(13, 'santanacah', '111', 'camila@gmail.com', 'Camila', 'kakakaka', 1);
+COMMIT;
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `fotos`
---
-ALTER TABLE `fotos`
- ADD PRIMARY KEY ("id");
-
---
--- Indexes for table `posts`
---
-ALTER TABLE `posts`
- ADD PRIMARY KEY ("id");
-
---
--- Indexes for table `relacao`
---
-ALTER TABLE `relacao`
- ADD PRIMARY KEY ("id");
-
---
--- Indexes for table `usuarios`
---
-ALTER TABLE `usuarios`
- ADD PRIMARY KEY ("id");
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `fotos`
---
-ALTER TABLE `fotos`
-MODIFY "id" int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `posts`
---
-ALTER TABLE `posts`
-MODIFY "id" int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `relacao`
---
-ALTER TABLE `relacao`
-MODIFY "id" int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `usuarios`
---
-ALTER TABLE `usuarios`
-MODIFY "id" int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
