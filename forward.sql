@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 23, 2018 at 10:57 PM
+-- Generation Time: Sep 25, 2018 at 03:29 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -22,7 +23,6 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `forward` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE forward;
-
 -- --------------------------------------------------------
 
 --
@@ -30,7 +30,13 @@ USE forward;
 --
 
 DROP TABLE IF EXISTS `comentarios`;
-CREATE TABLE "comentarios" ;
+CREATE TABLE `comentarios` (
+  `id` int(11) NOT NULL,
+  `id_post` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `comentario` varchar(255) NOT NULL,
+  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `comentarios`
@@ -39,7 +45,9 @@ CREATE TABLE "comentarios" ;
 INSERT INTO `comentarios` (`id`, `id_post`, `id_user`, `comentario`, `data`) VALUES
 (1, 91, 2, 'Seu vacilao', '2018-09-23 20:21:42'),
 (3, 91, 1, 'hue', '2018-09-23 20:36:31'),
-(5, 91, 1, 'fodase', '2018-09-23 20:45:03');
+(5, 91, 1, 'fodase', '2018-09-23 20:45:03'),
+(6, 91, 1, 'ggggg', '2018-09-23 21:06:27'),
+(7, 89, 1, 'oi linda', '2018-09-23 21:07:12');
 
 -- --------------------------------------------------------
 
@@ -48,7 +56,12 @@ INSERT INTO `comentarios` (`id`, `id_post`, `id_user`, `comentario`, `data`) VAL
 --
 
 DROP TABLE IF EXISTS `fotos`;
-CREATE TABLE "fotos" ;
+CREATE TABLE `fotos` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `legenda` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fotos`
@@ -71,7 +84,15 @@ INSERT INTO `fotos` (`id`, `id_user`, `nome`, `legenda`) VALUES
 --
 
 DROP TABLE IF EXISTS `posts`;
-CREATE TABLE "posts" ;
+CREATE TABLE `posts` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `post` varchar(140) NOT NULL,
+  `nome_user` varchar(255) NOT NULL,
+  `login_user` varchar(255) NOT NULL,
+  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `profile_user` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `posts`
@@ -93,9 +114,10 @@ INSERT INTO `posts` (`id`, `id_user`, `post`, `nome_user`, `login_user`, `data`,
 (74, 12, 'cu\r\n', 'leandro', 'leandro', '2018-09-13 22:27:58', 1),
 (75, 11, 'Puruca na área', 'Puruca', 'purucas', '2018-09-13 22:29:38', 1),
 (76, 11, 'Calem a boca', 'Puruca', 'purucas', '2018-09-13 23:52:31', 1),
-(85, 1, 'dasfadhfasud', 'Trump', 'trump', '2018-09-22 18:14:35', 1),
+(85, 1, 'dasfadhfasud', 'Trump', 'trump', '2018-09-25 01:22:29', 1),
 (89, 13, 'cu', 'Camila', 'santanacah', '2018-09-22 21:12:02', 1),
-(91, 1, 'Teste comentarios', 'Trump', 'trump', '2018-09-23 19:54:06', 1);
+(91, 1, 'Teste comentarios', 'Trump', 'trump', '2018-09-25 01:22:29', 1),
+(92, 1, 'kkkkkkk', 'Trump', 'trump', '2018-09-25 01:22:29', 1);
 
 -- --------------------------------------------------------
 
@@ -104,7 +126,12 @@ INSERT INTO `posts` (`id`, `id_user`, `post`, `nome_user`, `login_user`, `data`,
 --
 
 DROP TABLE IF EXISTS `relacao`;
-CREATE TABLE "relacao" ;
+CREATE TABLE `relacao` (
+  `id` int(11) NOT NULL,
+  `id_segue` int(11) NOT NULL,
+  `id_seguido` int(11) NOT NULL,
+  `aut` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `relacao`
@@ -122,7 +149,8 @@ INSERT INTO `relacao` (`id`, `id_segue`, `id_seguido`, `aut`) VALUES
 (38, 11, 2, '1'),
 (39, 11, 1, '1'),
 (40, 11, 10, '1'),
-(41, 11, 13, '1');
+(41, 11, 13, '1'),
+(42, 1, 13, '1');
 
 -- --------------------------------------------------------
 
@@ -131,7 +159,15 @@ INSERT INTO `relacao` (`id`, `id_segue`, `id_seguido`, `aut`) VALUES
 --
 
 DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE "usuarios" ;
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `login` varchar(255) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `bio` varchar(255) NOT NULL,
+  `profile` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `usuarios`
@@ -148,6 +184,74 @@ INSERT INTO `usuarios` (`id`, `login`, `senha`, `email`, `nome`, `bio`, `profile
 (11, 'purucas', '123', 'puruca@email.com', 'Puruca', 'ta nervoso', 1),
 (12, 'leandro', '123', 'leandro@gmail.com', 'leandro', '', 1),
 (13, 'santanacah', '111', 'camila@gmail.com', 'Camila', 'kakakaka', 1);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `fotos`
+--
+ALTER TABLE `fotos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `posts`
+--
+ALTER TABLE `posts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `relacao`
+--
+ALTER TABLE `relacao`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `comentarios`
+--
+ALTER TABLE `comentarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `fotos`
+--
+ALTER TABLE `fotos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT for table `posts`
+--
+ALTER TABLE `posts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+
+--
+-- AUTO_INCREMENT for table `relacao`
+--
+ALTER TABLE `relacao`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
