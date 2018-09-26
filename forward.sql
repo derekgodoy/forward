@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2018 at 03:29 AM
+-- Generation Time: Sep 27, 2018 at 12:21 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -21,15 +21,13 @@ SET time_zone = "+00:00";
 --
 -- Database: `forward`
 --
-CREATE DATABASE IF NOT EXISTS `forward` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE forward;
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `comentarios`
 --
 
-DROP TABLE IF EXISTS `comentarios`;
 CREATE TABLE `comentarios` (
   `id` int(11) NOT NULL,
   `id_post` int(11) NOT NULL,
@@ -47,7 +45,9 @@ INSERT INTO `comentarios` (`id`, `id_post`, `id_user`, `comentario`, `data`) VAL
 (3, 91, 1, 'hue', '2018-09-23 20:36:31'),
 (5, 91, 1, 'fodase', '2018-09-23 20:45:03'),
 (6, 91, 1, 'ggggg', '2018-09-23 21:06:27'),
-(7, 89, 1, 'oi linda', '2018-09-23 21:07:12');
+(7, 89, 1, 'oi linda', '2018-09-23 21:07:12'),
+(8, 92, 1, 'aeuhaeuh', '2018-09-26 00:22:37'),
+(9, 93, 15, 'teste', '2018-09-26 02:13:01');
 
 -- --------------------------------------------------------
 
@@ -55,7 +55,6 @@ INSERT INTO `comentarios` (`id`, `id_post`, `id_user`, `comentario`, `data`) VAL
 -- Table structure for table `fotos`
 --
 
-DROP TABLE IF EXISTS `fotos`;
 CREATE TABLE `fotos` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
@@ -83,7 +82,6 @@ INSERT INTO `fotos` (`id`, `id_user`, `nome`, `legenda`) VALUES
 -- Table structure for table `posts`
 --
 
-DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
@@ -117,7 +115,9 @@ INSERT INTO `posts` (`id`, `id_user`, `post`, `nome_user`, `login_user`, `data`,
 (85, 1, 'dasfadhfasud', 'Trump', 'trump', '2018-09-25 01:22:29', 1),
 (89, 13, 'cu', 'Camila', 'santanacah', '2018-09-22 21:12:02', 1),
 (91, 1, 'Teste comentarios', 'Trump', 'trump', '2018-09-25 01:22:29', 1),
-(92, 1, 'kkkkkkk', 'Trump', 'trump', '2018-09-25 01:22:29', 1);
+(92, 1, 'kkkkkkk', 'Trump', 'trump', '2018-09-25 01:22:29', 1),
+(93, 14, 'Primeiro post oficial desta experiência', 'Derek', 'derek', '2018-09-26 00:32:03', 0),
+(96, 15, 'teste\r\n', 'teste', 'teste', '2018-09-26 02:07:54', 0);
 
 -- --------------------------------------------------------
 
@@ -125,7 +125,6 @@ INSERT INTO `posts` (`id`, `id_user`, `post`, `nome_user`, `login_user`, `data`,
 -- Table structure for table `relacao`
 --
 
-DROP TABLE IF EXISTS `relacao`;
 CREATE TABLE `relacao` (
   `id` int(11) NOT NULL,
   `id_segue` int(11) NOT NULL,
@@ -150,7 +149,8 @@ INSERT INTO `relacao` (`id`, `id_segue`, `id_seguido`, `aut`) VALUES
 (39, 11, 1, '1'),
 (40, 11, 10, '1'),
 (41, 11, 13, '1'),
-(42, 1, 13, '1');
+(42, 1, 13, '1'),
+(43, 15, 14, '1');
 
 -- --------------------------------------------------------
 
@@ -158,7 +158,6 @@ INSERT INTO `relacao` (`id`, `id_segue`, `id_seguido`, `aut`) VALUES
 -- Table structure for table `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `login` varchar(255) NOT NULL,
@@ -174,16 +173,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `login`, `senha`, `email`, `nome`, `bio`, `profile`) VALUES
-(1, 'trump', '123', 'trump@gmail.com', 'Trump', '45th President of the United States of My Ass', 1),
-(2, 'ronald', '123', 'ronald@123', 'Ronald', 'McDonalds caralhooooooooo', 1),
-(5, 'yago83', '111', 'yago_rj@hotmail.com', 'Yaguin meno da favela', 'que isso', 1),
-(6, 'germano', '123', 'germano@gmail.com', 'Germano', '', 0),
-(7, 'bruno', '123', 'bruno007@gmail.com', 'Bruno', '', 1),
-(9, 'Unkybr', '123', 'xrenan@gmail.com', 'Renanzin rx vrau', '', 1),
-(10, 'Edu', 'edu', 'edu@gmail.com', 'Edu', 'hueheuhe', 1),
-(11, 'purucas', '123', 'puruca@email.com', 'Puruca', 'ta nervoso', 1),
-(12, 'leandro', '123', 'leandro@gmail.com', 'leandro', '', 1),
-(13, 'santanacah', '111', 'camila@gmail.com', 'Camila', 'kakakaka', 1);
+(14, 'derek', 'MTIz', 'derekgodoy@gmail.com', 'Derek', 'Criador deste site e melhor usuário', 0),
+(15, 'teste', 'dGVzdGU=', 'teste@teste', 'teste', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -227,7 +218,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `comentarios`
 --
 ALTER TABLE `comentarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `fotos`
@@ -239,19 +230,19 @@ ALTER TABLE `fotos`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `relacao`
 --
 ALTER TABLE `relacao`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
