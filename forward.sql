@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 27, 2018 at 12:21 AM
+-- Generation Time: Sep 27, 2018 at 12:26 AM
 -- Server version: 10.1.35-MariaDB
 -- PHP Version: 7.2.9
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `forward`
 --
+CREATE DATABASE IF NOT EXISTS `forward` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `forward`;
 
 -- --------------------------------------------------------
 
@@ -28,6 +30,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `comentarios`
 --
 
+DROP TABLE IF EXISTS `comentarios`;
 CREATE TABLE `comentarios` (
   `id` int(11) NOT NULL,
   `id_post` int(11) NOT NULL,
@@ -55,6 +58,7 @@ INSERT INTO `comentarios` (`id`, `id_post`, `id_user`, `comentario`, `data`) VAL
 -- Table structure for table `fotos`
 --
 
+DROP TABLE IF EXISTS `fotos`;
 CREATE TABLE `fotos` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
@@ -82,6 +86,7 @@ INSERT INTO `fotos` (`id`, `id_user`, `nome`, `legenda`) VALUES
 -- Table structure for table `posts`
 --
 
+DROP TABLE IF EXISTS `posts`;
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
@@ -125,6 +130,7 @@ INSERT INTO `posts` (`id`, `id_user`, `post`, `nome_user`, `login_user`, `data`,
 -- Table structure for table `relacao`
 --
 
+DROP TABLE IF EXISTS `relacao`;
 CREATE TABLE `relacao` (
   `id` int(11) NOT NULL,
   `id_segue` int(11) NOT NULL,
@@ -158,6 +164,7 @@ INSERT INTO `relacao` (`id`, `id_segue`, `id_seguido`, `aut`) VALUES
 -- Table structure for table `usuarios`
 --
 
+DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `login` varchar(255) NOT NULL,
