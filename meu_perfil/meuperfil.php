@@ -20,7 +20,7 @@ require '../Classes/Post.php';
 
   <body class="bg-dark" style="background-image: url(../img/users/bg<?php echo $_SESSION['id']?>.jpg); background-size:cover; background-attachment: fixed;">
   			
-<?php 	include '../modulos/navperfil.php';
+<?php 	include '../modulos/nav.php';
 				$postagens = new Post;
 				$galeria = new Midia;
 				$segue = new Usuario;
@@ -57,6 +57,33 @@ require '../Classes/Post.php';
 			</div>
 		</div>
 
+		<div class="mb-2">
+		<ul class="list-group">
+		  <a href='#' style="font-size: 13px;" class="list-group-item d-flex justify-content-between align-items-center active">
+		    Posts
+		    <span class="badge badge-danger badge-pill"><?php echo count($post) ?></span>
+		  </a>
+		  <a href='#' style="font-size: 13px;" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+		    Seguindo
+		    <span class="badge badge-danger badge-pill"><?php echo count($seguindo) ?></span>
+		  </a>
+		  <a href='#' style="font-size: 13px;" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+		    Seguidores
+		    <span class="badge badge-danger badge-pill"><?php echo count($seguidores); if ($solic){echo "*";} ?></span>
+		  </a>
+		  <a href='#' style="font-size: 13px;" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+		    Fotos
+		    <span class="badge badge-danger badge-pill"><?php echo count($fotos) ?></span>
+		  </a>
+		  <a href='#' style="font-size: 13px;" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+		    Vídeos
+		    <span class="badge badge-danger badge-pill">1</span>
+		  </a>
+		</ul>
+		</div>
+
+
+
 		<div class="text-center mt-2 mb-2">
 		
 				<a href="../meu_perfil/meuperfil.php" ><p class="font-weight-bold text-primary m-0" >Posts: <?php echo count($post) ?></p></a>
@@ -85,11 +112,7 @@ require '../Classes/Post.php';
 				
 		</div>
 
-
 	</div>
-
-
-
 
 
 <div class="container mt-5 justify-content-center bg-light col-xl-6 mb-5" style="border-radius: 10px;">
@@ -146,7 +169,7 @@ require '../Classes/Post.php';
 				<h3>Opa, não tem nada por aqui ainda. Diga alguma coisa:</h3>
 				<div class="row justify-content-center">
 					<div class="col-8 mt-5">
-	                    <form action="postar.php" method="post">
+	                    <form action="../home/postar.php" method="post">
 	                        <div class="input-group">
 							  <textarea class="form-control" id="post" name="post" aria-describedby="post" placeholder="Escreva aqui!" style="border-radius: 25px" rows="3" maxlength="140" required></textarea>
 							</div>
@@ -182,7 +205,7 @@ require '../Classes/Post.php';
 			            </div>
 			            <div class="modal-body">
 			                <div class="col">
-			                    <form action="postar.php" method="post">
+			                    <form action="../home/postar.php" method="post">
 			                        <div class="input-group">
 									  <textarea class="form-control" id="post" name="post" aria-describedby="post" placeholder="Escreva aqui!" style="border-radius: 25px" rows="3" maxlength="140" required></textarea>
 									</div>

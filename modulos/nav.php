@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container rounded">
 
-<nav class="navbar navbar-expand-xl navbar-light bg-light">
+<nav class="navbar navbar-expand-xl navbar-light bg-light" style="border-radius: 25px;">
 		  <a class="navbar-brand p-0 m-0 pr-2" href="../meu_perfil/meuperfil.php"><img class="img rounded-circle" style="height: 40px; width: 40px; object-fit: cover;" src="../img/users/profile<?php if ($_SESSION['profile']){ echo $_SESSION['id']; } else { echo "0";}?>.jpg"></a>
 
 		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,8 +24,8 @@
 		      <input class="form-control mr-sm-2" type="search" placeholder="Busca" id="busca" name="busca" style="border-radius: 25px">
 		    </form>
 			<div class="dropdown">
-			  <button class="btn btn-outline-secondary dropdown-toggle" style="height: 4%" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			  <button class="btn btn-outline-secondary dropdown-toggle" style="height: 4%; border-radius: 25px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+			  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
 			    <a class="dropdown-item text-danger" href="../home/logout.php"><i class="fas fa-sign-out-alt"></i> Sair</a>
 			    <a class="dropdown-item" href="../meu_perfil/meuperfil.php"><i class="fas fa-user"></i> Perfil</a>
 			    <a class="dropdown-item" href="../meu_perfil/editaperfil.php"><i class="fas fa-user-edit"></i> Editar perfil</a>

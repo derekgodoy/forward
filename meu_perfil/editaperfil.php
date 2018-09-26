@@ -21,7 +21,7 @@ require '../Classes/Post.php';
 
   <body class="bg-dark" style="background-image: url(../img/users/bg<?php echo $_SESSION['id']?>.jpg); background-size:cover; background-attachment: fixed;">
   	
-  	<?php include '../modulos/navedit.php' ?>
+  	<?php include '../modulos/nav.php' ?>
 
 	<div class="col-2 bg-light m-0 mt-5 position-absolute ml-5" style="border-radius: 15px;">
 		

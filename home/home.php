@@ -76,10 +76,31 @@ $result = $usuario->getLogin($pdo, $id);
 						<h5 class="m-0 pt-2"><?php echo $result[$i]['nome_user']; ?></h5>
 						<p class="m-0 text-muted">@<?php echo $result[$i]['login_user']; ?></p></a>
 					</div>
-					<div class="col-3">
-						<p class="text-muted m-0 text-right"><?php $date = date_create($result[$i]['data']); echo date_format($date, 'd/m/Y'); ?></p>
-						<p class="text-muted m-0 text-right"><?php echo date_format($date, 'H:i'); ?></p>
-					</div>
+					<div class="col-3 m-3">
+
+						<?php if ($_SESSION['id'] == $result[$i]['id_user']){ ?>
+							<div class="col-10 bg-light rounded position-absolute collapse text-center m-0 " id="coll<?php echo $result[$i]['id']; ?>">
+								<div>
+									<div>
+							  <p class=" text-danger m-0">Deletar post?</p>
+									</div>
+									<div class="text-center">
+							  <a class="text-center mr-1" href="../home/removePost.php?id=<?php echo $result[$i]['id']; ?>"><i class="fas text-success fa-check"></i></a>
+							  <a data-toggle="collapse" href="#coll<?php echo $result[$i]['id']; ?>" role="button" class="text-center ml-1"><i class="fas fa-times text-danger"></i></a>
+									</div>
+								</div>
+
+							</div>
+						<a  data-toggle="collapse" href="#coll<?php echo $result[$i]['id']; ?>" role="button" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-times text-muted float-right mr-2 mt-2"></i></a>
+
+						<?php } else {?>
+
+							<form action="../amigos/removeramigo.php" method="post">
+									<input type="hidden" name="id_seguido" id="id_seguido" value="<?php echo $result[$i]['id_user'] ?>">
+									<button class="btn btn-outline-danger btn-sm float-right mr-0 mb-2" style="margin-right: 09%; border-radius: 15px;">Deixar de seguir</button> 
+								</form>
+						<?php } ?>
+						</div>
 				</div>
 				<div class="row justify-content-center mt-4">
 					<div class="col-8 jumbotron" style="word-break: break-all;">
@@ -89,19 +110,17 @@ $result = $usuario->getLogin($pdo, $id);
 				<div class="row justify-content-center mb-1">
 					<div class="col-10">
 						<div class="row">
-							<div class=col>
-								<a href=""><i class="far fa-heart text-muted"></i></a>
-								<a data-toggle="collapse" href="#comments<?php echo $result[$i]['id'];?>" role="button" aria-expanded="false" aria-controls="comments" class="text-muted" style="text-decoration: none;"><i class="far fa-comment text-muted pl-3"></i> <span><?php if($comentarios){echo count($comentarios);} else { echo "0";} ?></span></a> 
+							<div class="col mt-1">
+								<a href="" class="align-middle"><i class="far fa-heart text-muted"></i></a>
+								<a data-toggle="collapse" href="#comments<?php echo $result[$i]['id'];?>" role="button" aria-expanded="false" aria-controls="comments" class="text-muted align-middle" style="text-decoration: none;"><i class="far fa-comment text-muted pl-3"></i> <span class="align-top"><?php if($comentarios){echo count($comentarios);} else { echo "0";} ?></span></a> 
 							</div>
 
-						<div class=col>
+						
+					<div class="col-3" >
+						<p class="text-muted m-0 text-right" style="font-size: 11px;"><?php $date = date_create($result[$i]['data']); echo date_format($date, 'd/m'); ?></p>
+						<p class="text-muted m-0 text-right" style="font-size: 11px;"><?php echo date_format($date, 'H:i'); ?></p>
+					</div>
 
-			<?php if ($_SESSION['id'] == $result[$i]['id_user']){ ?><a href="../home/removePost.php?id=<?php echo $result[$i]['id']; ?>"><i class="fas fa-times text-muted float-right"></i></a><?php } else {?><form action="../amigos/removeramigo.php" method="post">
-						<input type="hidden" name="id_seguido" id="id_seguido" value="<?php echo $result[$i]['id_user'] ?>">
-						<button class="btn btn-outline-danger btn-sm float-right mr-0 mb-2" style="margin-right: 09%; border-radius: 15px;">Deixar de seguir</button> 
-					</form>
-			<?php } ?>
-						</div>
 					</div>
 
 						<!-- comentarios -->

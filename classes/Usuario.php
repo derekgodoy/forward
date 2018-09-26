@@ -10,7 +10,7 @@
         public function fazerLogin($pdo, $login, $senha){
             $stmt = $pdo->prepare('SELECT id FROM usuarios WHERE login=? AND senha=?');
             $stmt->bindParam(1, $login, PDO::PARAM_STR);
-            $stmt->bindParam(2, $senha, PDO::PARAM_STR);
+            $stmt->bindParam(2, base64_encode($senha), PDO::PARAM_STR);
             $stmt->execute();
             
             if($row = $stmt->fetch(PDO::FETCH_ASSOC)){
@@ -40,11 +40,11 @@
         public function cadastrar($pdo, $id, $login, $senha, $confsenha, $email, $nome, $profile){
             
             if ($this->verificaSenha($senha, $confsenha)){
-
+                base64_encode($senha);
             $stmt = $pdo->prepare('INSERT INTO usuarios (id, login, senha, email, nome, profile) VALUES (?, ?, ?, ?, ?, ?) ');
             $stmt->bindParam(1, $id, PDO::PARAM_INT);
             $stmt->bindParam(2, $login, PDO::PARAM_STR);
-            $stmt->bindParam(3, $senha, PDO::PARAM_STR);
+            $stmt->bindParam(3, base64_encode($senha), PDO::PARAM_STR);
             $stmt->bindParam(4, $email, PDO::PARAM_STR);
             $stmt->bindParam(5, $nome, PDO::PARAM_STR);
             $stmt->bindParam(6, $profile, PDO::PARAM_STR);
@@ -142,7 +142,7 @@
 
             if ($this->verificaSenha($senha, $confsenha)){
                 $stmt = $pdo->prepare('UPDATE usuarios SET senha = ? WHERE id = ?');
-                $stmt->bindParam(1, $senha, PDO::PARAM_STR);
+                $stmt->bindParam(1, base64_encode($senha), PDO::PARAM_STR);
                 $stmt->bindParam(2, $id, PDO::PARAM_INT);
                 $stmt->execute();
                 return true;
