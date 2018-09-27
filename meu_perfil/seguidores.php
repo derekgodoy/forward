@@ -21,7 +21,7 @@ require '../Classes/Post.php';
 
   <body class="bg-dark" style="background-image: url(../img/users/bg<?php echo $_SESSION['id']?>.jpg); background-size:cover; background-attachment: fixed;">
   			
-<?php 	include '../modulos/navperfil.php';
+<?php 	include '../modulos/nav.php';
 				$postagens = new Post;
 				$galeria = new Midia;
 				$segue = new Usuario;
@@ -58,33 +58,32 @@ require '../Classes/Post.php';
 			</div>
 		</div>
 
-		<div class="text-center mt-2 mb-2">
-		
-				<a href="../meu_perfil/meuperfil.php" ><p class="font-weight-bold text-primary m-0" >Posts: <?php echo count($post) ?></p></a>
-				
-				<div class="row mt-3">
-				<div class="col">
-					<a href="../meu_perfil/seguindo.php" ><p class="font-weight-bold text-primary m-0" >Seguindo: <?php echo count($seguindo) ?></p></a>
-				</div>
-				<div class="col">
-					<a href="../meu_perfil/seguidores.php" ><p class="font-weight-bold text-primary m-0" >Seguidores: <?php echo count($seguidores); if ($solic){echo "*";}  ?></p></a>
-				</div>
-				</div>
-						
-				<div class="row mt-3">
-				<div class="col">
-					<a href="../meu_perfil/minhasfotos.php" ><p class="font-weight-bold text-primary m-0"><i class="far fa-image"></i> Fotos: <?php echo count($fotos)?></p></a>
-				</div>
-				<div class="col">
-					<p class="font-weight-bold text-primary m-0"><i class="fas fa-video"></i> Vídeos: 0</p>
-				</div>
-				</div>
-				
-				
-			
-				
-				
+		<div class="mb-2">
+		<ul class="list-group">
+		  <a href='../meu_perfil/meuperfil.php' style="font-size: 13px;" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+		    Posts
+		    <span class="badge badge-danger badge-pill"><?php echo count($post) ?></span>
+		  </a>
+		  <a href='../meu_perfil/seguindo.php' style="font-size: 13px;" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+		    Seguindo
+		    <span class="badge badge-danger badge-pill"><?php echo count($seguindo) ?></span>
+		  </a>
+		  <a href='../meu_perfil/seguidores.php' style="font-size: 13px;" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action active">
+		    Seguidores
+		    <span class="badge badge-danger badge-pill"><?php echo count($seguidores); if ($solic){echo "*";} ?></span>
+		  </a>
+		  <a href='../meu_perfil/minhasfotos.php' style="font-size: 13px;" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+		    Fotos
+		    <span class="badge badge-danger badge-pill"><?php echo count($fotos) ?></span>
+		  </a>
+		  <a href='#' style="font-size: 13px;" class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+		    Vídeos
+		    <span class="badge badge-danger badge-pill">1</span>
+		  </a>
+		</ul>
 		</div>
+
+	</div>
 
 
 	</div>

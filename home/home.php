@@ -79,7 +79,7 @@ $result = $usuario->getLogin($pdo, $id);
 					<div class="col-3 m-3">
 
 						<?php if ($_SESSION['id'] == $result[$i]['id_user']){ ?>
-							<div class="col-10 bg-light rounded position-absolute collapse text-center m-0 " id="coll<?php echo $result[$i]['id']; ?>">
+							<div class="col bg-light rounded position-absolute collapse text-center m-0 " id="coll<?php echo $result[$i]['id']; ?>">
 								<div>
 									<div>
 							  <p class=" text-danger m-0">Deletar post?</p>

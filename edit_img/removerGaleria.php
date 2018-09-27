@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require '../onexao.php';
+    require '../conexao.php';
     require '../Classes/Midia.php';
 
 $nome = $_POST['nome'];
